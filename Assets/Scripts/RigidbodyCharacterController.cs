@@ -11,12 +11,17 @@ public class RigidbodyCharacterController : MonoBehaviour
     private float maxSpeed = 2;
 
     [SerializeField]
+    [Tooltip("How fast the player turns. 0 = no turning, 1 = instant turning")]
+    [Range(0, 1)]
+    private float turnSpeed = 0.1f;
+
+    [SerializeField]
     private PhysicMaterial stoppingPhysicsMaterial, movingPhysicsMaterial;
 
     private new Rigidbody rigidbody;
     private Vector2 input;
     private new Collider collider;
-
+    
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -35,18 +40,15 @@ public class RigidbodyCharacterController : MonoBehaviour
 
         collider.material = inputDirection.magnitude > 0 ? movingPhysicsMaterial : stoppingPhysicsMaterial;
 
-        //if (inputDirection.magnitude > 0)
-        //{
-        //    collider.material = movingPhysicsMaterial;
-        //}
-        //else
-        //{
-        //    collider.material = stoppingPhysicsMaterial;
-        //}
-
         if (rigidbody.velocity.magnitude < maxSpeed)
         {
             rigidbody.AddForce(cameraRelativeInputDirection * accelerationForce, ForceMode.Acceleration);
+        }
+
+        if (cameraRelativeInputDirection.magnitude > 0)
+        {
+            var targetRotation = Quaternion.LookRotation(cameraRelativeInputDirection);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSpeed);
         }
     }
 
@@ -55,5 +57,4 @@ public class RigidbodyCharacterController : MonoBehaviour
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
     }
-
 }
