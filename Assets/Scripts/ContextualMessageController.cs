@@ -15,7 +15,7 @@ public class ContextualMessageController : MonoBehaviour
 
         canvasGroup.alpha = 0;
 
-        StartCoroutine (ShowMessage("HOWDY HO", 2));
+        
     }
 
     private IEnumerator ShowMessage(string message, float duration)
@@ -26,9 +26,4 @@ public class ContextualMessageController : MonoBehaviour
         yield return new WaitForSeconds(duration);
         canvasGroup.alpha = 0;
     }
-    //// Update is called once per frame
-    //void Update()
-    //{
-        
-    //}
 }
