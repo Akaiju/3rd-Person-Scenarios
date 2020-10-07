@@ -6,6 +6,7 @@ using UnityEngine;
 public class ContextualMessageTrigger : MonoBehaviour
 {
     [SerializeField]
+    [TextArea (3, 6)]
     private string message = "Default message";
 
     [SerializeField]
