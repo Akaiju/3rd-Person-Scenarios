@@ -18,7 +18,7 @@
                     "type": "Value",
                     "id": "f880d021-9b17-4bbe-bd13-ddb6d40886c7",
                     "expectedControlType": "Vector2",
-                    "processors": "ScaleVector2(x=0.3,y=0.2)",
+                    "processors": "ScaleVector2(x=0.1,y=0.001)",
                     "interactions": ""
                 },
                 {
